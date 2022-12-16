@@ -13,30 +13,177 @@
 </head>
 
 <body>
-  <header class="header">
-    <div class="header__big-container">
-      <div class="header__search search">
-        <div class="search-form">
-          <button type="button" class="search-form__icon"><i class="bi bi-search"></i></button>
-          <form action="#" class="search-form__item">
-            <button type="submit" class="search-form__btn"><i class="bi bi-search"></i></button>
-            <input autocomplete="off" type="text" name="form[]" placeholder="Search product here..."
-              class="search-form__input">
-          </form>
+
+  <div class="root">
+    <header class="header">
+      <div class="header__big-container">
+        <div class="header__search search">
+          <div class="search-form">
+            <button type="button" class="search-form__icon"><i class="bi bi-search"></i></button>
+            <form action="#" class="search-form__item">
+              <button type="submit" class="search-form__btn"><i class="bi bi-search"></i></button>
+              <input autocomplete="off" type="text" name="form[]" placeholder="Search product here..."
+                class="search-form__input">
+            </form>
+          </div>
+        </div>
+        <div class="header__logo">
+          <img class="header__logo-img" src="assets/svg/logo.svg" alt="logo">
+        </div>
+        <div class="header__cart">
+          <p class="header__cart-total">Total: <span class="header__total-amount">$1,500.00</span></p>
+          <button type="button" class="header__cart-icon">
+            <i class="cart-open bi bi-cart"></i>
+            <span class="header__cart-quantity">1</span>
+          </button>
         </div>
       </div>
-      <div class="header__logo">
-        <img class="header__logo-img" src="assets/svg/logo.svg" alt="logo">
+    </header>
+
+    <main class="main">
+      <div class="main__container">
+        <section class="main__products products">
+          <h2 class="products__title visually-hidden">Catalog</h2>
+
+          <div class="products__top">
+            <div class="products__filter">
+              <button class="filter__button filter-button" type="button">
+                <i class="bi bi-funnel"></i>
+                <span class="filter__button-text">Filter</span>
+              </button>
+            </div>
+
+            <div class="products__view">
+              <a class="products__view-mode grid-view view-mode-active" data-grid-view="3"><i
+                  class="bi bi-grid-3x3-gap"></i></a>
+              <a class="products__view-mode list-view" data-grid-view="1"><i class="bi bi-list-ul"></i></a>
+            </div>
+
+            <div class="products__sort">
+              <p class="products__found found-products">Found:<span class="found-products__count">5</span></p>
+              <label class="products__sort-label" for="SortBy">Sort by:</label>
+              <select class="products__sort-select" name="sortby" id="SortBy">
+                <option selected value="manual">Featured</option>
+                <option value="best-selling">Best Selling</option>
+                <option value="title-ascending">Alphabetically, A-Z</option>
+                <option value="title-descending">Alphabetically, Z-A</option>
+                <option value="price-ascending">Price, low to high</option>
+                <option value="price-descending">Price, high to low</option>
+                <option value="created-descending">Date, new to old</option>
+                <option value="created-ascending">Date, old to new</option>
+              </select>
+            </div>
+
+          </div>
+
+          <!-- <ul class="products__catalog catalog-grid">
+            <li class="products__item catalog-grid__product" id="product-item">
+              <div class="product__image catalog-grid__image">
+                <img src="assets/img/iphone.jpg" alt="product image">
+              </div>
+              <button class="product__buy-button buy-button catalog-grid__buy-button"><span
+                  class="buy-button__text">Add</span><i class="bi bi-cart2"></i></button>
+              <div class="product__info catalog-grid__product-info">
+                <p class="product__name catalog-grid__product-name">Iphone 12 64gb</p>
+                <p class="product__price catalog-grid__product-price">$800</p>
+              </div>
+            </li>
+          </ul> -->
+
+          <ul class="products__catalog catalog-list">
+            <li class="products__item catalog-list__product" id="product-item">
+              <div class="product__image catalog-list__image">
+                <img src="assets/img/iphone.jpg" alt="product image">
+              </div>
+              <div class="product__info catalog-list__product-info">
+                <p class="product__name catalog-list__product-name">Iphone 12 64gb</p>
+                <p class="product__price catalog-list__product-price">$800</p>
+                <p class="product__price catalog-list__product-description">The purpose of lorem ipsum is to create a
+                  natural looking block of text (sentence, paragraph, page, etc.) that doesn't distract from the layout.
+                  A practice not without controversy, laying out pages with meaningless filler...</p>
+                <button class="product__buy-button buy-button catalog-list__buy-button"><span
+                    class="buy-button__text">Add</span><i class="bi bi-cart2"></i></button>
+              </div>
+            </li>
+          </ul>
+
+
+        </section>
+
+        <div class="bg-overlay"></div>
+
+        <div class="filter">
+          <i class="filter__close bi bi-x-lg"></i>
+          <ul class="filter__list">
+            <li class="filter__item">
+              <div class="filter__title">Filter</div>
+            </li>
+            <li class="filter__item">
+              <div class="filter__title">Availability</div>
+            </li>
+            <li class="filter__item">
+              <div class="filter__title">Brand</div>
+            </li>
+            <li class="filter__item">
+              <div class="filter__title">Category</div>
+            </li>
+            <li class="filter__item">
+              <div class="filter__title">Price</div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="cart">
+          <div class="cart__header">
+            <div class="cart__amount-title">There are <span class="cart__amount">0</span> products</div>
+            <i class="cart__close bi bi-x-lg"></i>
+          </div>
+          <div class="cart__main">
+            <ul class="cart__list"></ul>
+          </div>
+          <div class="cart__footer">
+            <div class="cart__total-container">
+              <p class="cart__total-title">Subtotal</p>
+              <p class="cart__total">$45.00</p>
+            </div>
+            <div class="cart__controls">
+              <label class="cart__agreement-label" for="cart__agreement">
+                <input class="cart__agreement" type="checkbox" id="cart__agreement">
+                <p class="cart__agreement-text">I have read and agree with the <br> <a href="#"
+                    class="cart__agreement-link">terms & condition.</a></p>
+              </label>
+              <div class="cart__buttons">
+                <button class="cart__button">View cart</button>
+                <button class="cart__button cart__button_disabled">Checkout</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
-      <div class="header__cart">
-        <p class="header__cart-total">Total: <span class="header__total-amount">$1,500.00</span></p>
-        <button type="button" class="header__cart-icon">
-          <i class="bi bi-cart"></i>
-          <span class="header__cart-quantity">1</span>
-        </button>
+    </main>
+
+    <footer class="footer">
+      <div class="footer__big-container">
+        <div class="footer__authors">
+          <div class="footer__git-icon">
+            <img src="assets/svg/github.svg" alt="git logo">
+          </div>
+          <div class="footer__author-names">
+            <a href="https://github.com/vvant97" target="_blank" class="footer__author-name">Vladislav Antonov</a>
+            <a href="https://github.com/elian-cheng" target="_blank" class="footer__author-name">Olga Chernega</a>
+          </div>
+        </div>
+        <div class="footer__info">
+          <p class="footer__year">2022</p>
+          <a href="https://rs.school/js/" target="_blank" class="footer__rs-link">
+            <img src="assets/svg/rs-school.svg" alt="rs school logo">
+          </a>
+        </div>
       </div>
-    </div>
-  </header>
+    </footer>
+  </div>
+
 </body>
 
 </html>

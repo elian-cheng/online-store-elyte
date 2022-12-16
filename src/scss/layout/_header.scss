@@ -1,9 +1,12 @@
 .header {
-  position: absolute;
+  position: relative;
+  z-index: 1;
   width: 100%;
   top: 0;
   left: 0;
   min-height: 40px;
+  padding-bottom: 80px;
+  border-bottom: 1px solid #e2e2e2;
 
   &__big-container {
     padding-top: 15px;
@@ -100,7 +103,6 @@
   }
 }
 .search-form {
-  // max-width: 473px;
   &._active {
     .search-form__item {
       opacity: 1;
@@ -111,7 +113,6 @@
       color: $yellowColor;
     }
   }
-  // .search-form__icon
   &__icon {
     @media (min-width: $mobile) {
       display: none;
@@ -123,7 +124,6 @@
       color: #262f56;
     }
   }
-  // .search-form__item
   &__item {
     display: flex;
     align-items: center;
@@ -139,7 +139,6 @@
       transition: all 0.3s ease 0s;
     }
   }
-  // .search-form__btn
   &__btn {
     flex: 0 0 45px;
     height: 45px;
@@ -148,7 +147,6 @@
       color: #333333;
     }
   }
-  // .search-form__input
   &__input {
     font-size: 14px;
     width: 100%;
