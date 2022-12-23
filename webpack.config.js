@@ -2,6 +2,9 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const { NetlifyPlugin } = require('netlify-webpack-plugin');
+const EslintPlugin = require('eslint-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const mode = process.env.NODE_ENV || 'development';
 const devMode = mode === 'development';
@@ -10,7 +13,9 @@ module.exports = {
   mode,
   devtool: devMode ? 'inline-source-map' : undefined,
   devServer: {
-    static: './dist',
+    historyApiFallback: {
+      rewrites: [{ from: /./, to: '/index.html' }],
+    },
     port: 8000,
     watchFiles: ['./src/*'],
     open: true,
@@ -20,7 +25,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[contenthash].bundle.js',
-    clean: true,
+    clean: process.env.NODE_ENV === 'production',
   },
   module: {
     rules: [
@@ -31,13 +36,6 @@ module.exports = {
       {
         test: /\.(c|sa|sc)ss$/i,
         use: [devMode ? 'style-loader' : MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
-      },
-      {
-        test: /\.(png|jpg|jpeg|gif|ico)$/i,
-        type: 'asset/resource',
-        generator: {
-          filename: 'assets/img/[contenthash][ext]',
-        },
       },
       {
         test: /\.svg$/i,
@@ -67,12 +65,28 @@ module.exports = {
       template: './src/index.html',
       filename: 'index.html',
     }),
-    new HtmlWebpackPlugin({
-      template: './src/product.html',
-      filename: 'product.html',
-    }),
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css',
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: `./src/assets/img`,
+          to: `assets/img`,
+          noErrorOnMissing: true,
+          force: true,
+        },
+      ],
+    }),
+    new EslintPlugin({ extensions: 'ts' }),
+    new NetlifyPlugin({
+      redirects: [
+        {
+          from: '/*',
+          to: '/index.html',
+          status: 200,
+        },
+      ],
     }),
   ],
   optimization: {

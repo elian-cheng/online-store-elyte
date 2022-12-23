@@ -5,15 +5,25 @@
 // Base
 @import './base/common';
 
+// Pages
+@import './pages/404';
+
 // Components
 @import './components/filter/filter';
 @import './components/cart/cart';
 @import './components/catalog/catalog';
 @import './components/rating/rating';
+@import './components/product-card/image-slider';
+@import './components/product-card/product-info';
+@import './components/product-quantity/product-quantity';
+@import './components/breadcrumbs/breadcrumbs';
 
 // Layout
 @import './layout/header';
 @import './layout/footer';
+
+// Pages
+@import './pages/product';
 
 // Vendors
 @import './vendors/bootstrap-icons';

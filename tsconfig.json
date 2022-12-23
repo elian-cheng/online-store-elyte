@@ -1,14 +1,16 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "module": "ES2022",
+    "module": "CommonJS",
     "rootDir": "./src",
     "allowJs": true,
     "sourceMap": true,
     "outDir": "./dist",
     "removeComments": true,
     "noEmitOnError": true,
+    "moduleResolution": "node",
     "esModuleInterop": true,
+    "resolveJsonModule": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitAny": true,
