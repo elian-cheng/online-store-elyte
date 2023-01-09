@@ -1,5 +1,5 @@
 .cart {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: -320px;
   z-index: 3;
@@ -144,6 +144,16 @@
     @include button;
   }
 
+  .go-to-checkout {
+    border: 2px solid $colorFontSecondary;
+    background: transparent;
+    color: $colorFontPrimary;
+
+    &:hover {
+      background: $colorFontSecondary;
+    }
+  }
+
   &__item {
     @include flex($gap: 15px);
     @include size($padding: 15px);
@@ -159,7 +169,7 @@
     @include size($width: 65px, $height: 77px);
 
     border: $border;
-    background-size: 85%;
+    background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
   }
@@ -171,6 +181,16 @@
   &__product-title {
     @include size($margin: 5px 0 0);
     @include font($fontSize: 1.4rem);
+
+    transition: 0.3s all;
+
+    &:visited {
+      color: $colorFontPrimary;
+    }
+
+    &:hover {
+      color: $colorParagraph;
+    }
   }
 
   &__product-info {
